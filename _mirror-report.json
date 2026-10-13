@@ -1,0 +1,73 @@
+{
+  "start": "https://generic-king.itch.io/worldseed",
+  "origin": "https://html-classic.itch.zone",
+  "embed": "https://html-classic.itch.zone/html/19693588/index.html?v=1791727501",
+  "captureRoot": "html/19693588/",
+  "gated": false,
+  "sessionRenewal": "none",
+  "requests": 12,
+  "fetched": 1,
+  "bytes": 1970079,
+  "paths": [
+    "index.html"
+  ],
+  "unresolved": [],
+  "unreachable": [
+    {
+      "status": 404,
+      "path": "favicon.ico",
+      "probes": 2,
+      "note": "browser-requested favicon on the loopback server (2 hits), not game closure — the itch host answers /favicon.ico 404 too"
+    },
+    {
+      "status": 404,
+      "path": "manifest.json",
+      "probes": 1,
+      "note": "sibling-path probe on the embed directory — the upload holds only index.html"
+    },
+    {
+      "status": 404,
+      "path": "assets/",
+      "probes": 1,
+      "note": "sibling-path probe on the embed directory"
+    },
+    {
+      "status": 404,
+      "path": "src/",
+      "probes": 1,
+      "note": "sibling-path probe on the embed directory"
+    },
+    {
+      "status": 404,
+      "path": "index.htm",
+      "probes": 1,
+      "note": "sibling-path probe on the embed directory"
+    }
+  ],
+  "external": [
+    "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.module.min.js (392,497 B, imported by the inline module script; itself imports the next line) — CDN dependency that stays CDN (fleet rule; socker precedent 2026-10-10), not vendored",
+    "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.core.js (1,458,076 B, pulled by three.module.min.js) — same rule",
+    "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=Silkscreen:wght@400;700&display=swap (+ fonts.gstatic.com woff2 x3) — external CDN stylesheet/fonts, system-font fallback without them",
+    "https://static.itch.io/htmlgame.js (635 B) — itch HTML5 harness on the frame document: fires the itch.io/html-callback beacon and, when the page has a NON-itch referrer (hotlinked incl. a reload), navigates the top window to https://itch.io/embed-hotlink/<upload_id>; a fresh no-referrer navigation plays normally, offline it simply fails to load. Platform chrome, not vendored"
+  ],
+  "networkCrossCheck": {
+    "live": {
+      "entries": 12,
+      "onHostUnique": 1,
+      "onHostNotInCapture": 0,
+      "note": "opencli browser network capture while the mirror served the game on loopback: the game's own request set is 12 entries — 1 on-host (the entry document itself), 2 in-page data: PNG icon loads, 9 off-host (three.module.min.js + three.core.js from cdnjs, the Google Fonts CSS + 3 woff2, static.itch.io/htmlgame.js, and the itch.io html-callback/embed-hotlink beacons). The full 22-entry live log additionally contains 10 entries fetched by the itch.io/embed-hotlink page itself (Lato CSS + woff2, cdn.ampproject.org scripts, favicon) after the external harness redirected the reloaded tab — itch site chrome, not the game."
+    },
+    "local": {
+      "note": "mirror served on loopback (tools/serve.mjs), full play-through (EMBARK, landing, dialogue, ground walking): the serve log contains zero game 404s — the only 404 lines are 2 x /favicon.ico (browser chrome; the itch host 404s it as well), so the single-file closure served the game completely."
+    }
+  },
+  "notes": [
+    "capture root is the embed directory html/19693588/ of the itch HTML5 host; the mirror serves that root as the repo root, so index.html here is the iframe target of the itch page's #game_drop iframe",
+    "the whole game is ONE self-contained file: inline 2D canvas + WebGL2 three.js pixel-art renderer, inline app CSS, procedural assets (no image/audio/model/font payloads are fetched — icons are runtime data: URLs, sound is WebAudio synthesis), ~71 author source modules concatenated into one classic IIFE with `// ---- world/x.js ----` banners",
+    "closure iterated to fixpoint over the captured document: every script/style reference, literal path, import specifier and asset-directory string, plus direct sibling-path probes on the host (favicon.ico/manifest.json/assets//src//index.htm all 404 — the upload holds only index.html); no genuine upstream 404s remain",
+    "the ?v=1791727501 stamp on the iframe src is cache-busting only — the bare path was verified to serve identical bytes (cmp); it is ignored by tools/update.mjs",
+    "derived layers: readable/ = 4 inline-block pretties (pinned prettier 3.9.6, fixpoint, 4/4 re-render byte-exact, none a byte copy); src/ = 166 statement-aligned slices (165 over the classic IIFE body's 1,321 statements + 1 for the module bootstrap), 166/166 standalone-parse + byte-exact round-trip; split-spec.json records the pipeline + the external dependencies (notRendered)",
+    "boot test: served on loopback, the game booted (planet view), was played into the ground game (EMBARK -> Normal landing -> arrival dialogue -> road travel -> Silaannahr Crossing village -> free-roam walking), cover = docs/cover.png (night 1 campfire on the road), boot evidence = docs/boot-2026-10-13.png; listener PID killed and port 8094 proved closed (netstat)",
+    "section 0.4 fork-over-mirror checked 2026-10-13: no public upstream repo — itch page and author profile carry no repo links, the build has no GitHub/GitLab string, GitHub user search 'generic-king' = 0 results and repo search 'worldseed' returns only unrelated projects; the mirror stands"
+  ]
+}
