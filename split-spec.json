@@ -1,0 +1,1541 @@
+{
+  "project": "worldseed",
+  "kind": "statement-aligned-slices",
+  "defaultFile": "src/index-inline-2-01.js",
+  "note": "WORLDSEED is capture-class: the itch.io HTML5 embed served from https://html-classic.itch.zone/html/19693588/ — a SINGLE self-contained index.html (1970079 B) whose whole game is inline. §0.4 fork-over-mirror was checked on 2026-10-13 — no public upstream repo exists (the itch page carries no repo link, and a GitHub search finds nothing for the game or the author slug Generic-King), so the mirror stands. Derived pipeline: capture → pinned prettier 3.9.6 (module API, default options, rendered to fixpoint (format until the output stops changing, max 5 passes) — never the CLI: it respects .gitignore and can silently echo its input) → readable/index-inline-N.pretty.{js,css} per inline block (every pretty provably NOT byte-identical to its capture source) → statement-aligned slices src/<tag>-NN.js of the two inline script blocks: the classic script is one `(() => { … })();` IIFE wrapping the author's ~71 source modules (each introduced by a `// ---- world/x.js ----` banner), so slices cut the IIFE BODY at top-level declaration boundaries in ~250-350 line windows (oversized single declarations stay whole) with the exact 2-line provenance header; the IIFE wrapper head (opening + 'use strict' + first module banner) is a wholeFile section and the `})();` closer a skipped section, both indexed and never sliced. Every slice parses standalone under `node --input-type=module --check -` and round-trips byte-exact to its recorded readable line range. No vendor bytes exist in the capture to whole-file: three.js 0.186.1 is an EXTERNAL CDN ES-module import (https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.module.min.js) and the fonts stylesheet an external CDN link — CDN dependencies stay CDN (fleet rule; socker precedent 2026-10-10), recorded in notRendered and README.md; the game degrades gracefully without both. Identifiers in src/ are the author's own names (the inline source is commented and human-written — no rename campaign needed). Capture bytes are untouched by everything above; re-cut with `node tools/derive.mjs` after any capture refresh. `node tools/audit.js` is the gate.",
+  "renderOptions": {
+    "_default": "prettier 3.9.6, module API, default options, rendered to fixpoint (format until the output stops changing, max 5 passes) — never the CLI: it respects .gitignore and can silently echo its input",
+    "js": "parser babel, no plugins",
+    "passes": "format until fixpoint, max 5 (recorded per source as prettyPasses)",
+    "css": "parser css, no plugins",
+    "json": "parser json, no plugins (inline importmap blocks, if any)"
+  },
+  "source": "readable/: 2 JS pretties (2 script block(s) sliced) + 2 CSS pretties (wholeFile); src/: 166 statement-aligned slices across 2 script block(s); 1 skipped section(s); 4 wholeFile section(s); capture: 1 file(s) under .upstream/manifest.json; inline scan: index.html (4 inline content block(s)); derived 2026-10-13.",
+  "inline": {
+    "scanned": [
+      "index.html"
+    ],
+    "contentBlocks": 4,
+    "notRendered": 5,
+    "note": "the captured entry document carries 4 inline content blocks: <style> #1 (reset) and #2 (app CSS) render to readable/index-inline-{1,2}.pretty.css; <script> #1 (module: the three.js CDN bootstrap) and #2 (classic: the whole game IIFE, ~74,979 pretty lines) render to readable/index-inline-{1,2}.pretty.js and are sliced into src/. The itch chrome script (src=) and the Google Fonts <link> are external references, not blocks: recorded in notRendered."
+  },
+  "externalDependencies": [
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.module.min.js",
+      "kind": "es-module import (three.js 0.186.1)",
+      "vendored": false
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=Silkscreen:wght@400;700&display=swap",
+      "kind": "stylesheet (Google Fonts)",
+      "vendored": false
+    },
+    {
+      "url": "https://fonts.gstatic.com",
+      "kind": "preconnect (font files)",
+      "vendored": false
+    },
+    {
+      "url": "https://fonts.googleapis.com",
+      "kind": "preconnect",
+      "vendored": false
+    },
+    {
+      "url": "https://static.itch.io/htmlgame.js",
+      "kind": "itch HTML5 harness script",
+      "vendored": false
+    }
+  ],
+  "sources": [
+    {
+      "sourceFile": "readable/index-inline-1.pretty.css",
+      "capture": "index.html",
+      "captureKind": "inline-style",
+      "captureByteStart": 137,
+      "captureByteEnd": 509,
+      "captureSha256": "a4a477526673b7cbb466775e39698516d7867f308f9c94fd1f243e5ffe190c75",
+      "captureBytes": 372,
+      "prettyLines": 25,
+      "prettyBytes": 460,
+      "prettySha256": "f131afa56c000987f8c14065c8a668ddc86830ba3ac47b77397156c128f6cabd",
+      "prettyPasses": 2,
+      "fixpoint": true,
+      "tag": "index-inline-1",
+      "slices": 0,
+      "derived": "readable only (stylesheet, wholeFile)"
+    },
+    {
+      "sourceFile": "readable/index-inline-2.pretty.css",
+      "capture": "index.html",
+      "captureKind": "inline-style",
+      "captureByteStart": 1035,
+      "captureByteEnd": 37426,
+      "captureSha256": "be57962c8739a22cab2d10c83bcc176db6ed8cd4e3f5d173c49542d2cc363c8e",
+      "captureBytes": 36391,
+      "prettyLines": 2110,
+      "prettyBytes": 39371,
+      "prettySha256": "b18e1edd24e784029009cf91d84246cc1bf7197e2b0898832c003d336a138e17",
+      "prettyPasses": 2,
+      "fixpoint": true,
+      "tag": "index-inline-2",
+      "slices": 0,
+      "derived": "readable only (stylesheet, wholeFile)"
+    },
+    {
+      "sourceFile": "readable/index-inline-1.pretty.js",
+      "capture": "index.html",
+      "captureKind": "inline-script",
+      "captureByteStart": 51157,
+      "captureByteEnd": 51418,
+      "captureSha256": "5db06ac54fcec7e48dac1aacb499259cb1dd5db88ca9a5205d003cb69aef7413",
+      "captureBytes": 261,
+      "prettyLines": 4,
+      "prettyBytes": 260,
+      "prettySha256": "211260bff0df21cf996fa9adc2b0c83845b95dcf77e5c51caa699786a25f5d54",
+      "prettyPasses": 2,
+      "fixpoint": true,
+      "tag": "index-inline-1",
+      "wrapper": null,
+      "statements": 3,
+      "slices": 1,
+      "derived": "readable + 1 statement-aligned slice(s) + 1 wholeFile region(s)"
+    },
+    {
+      "sourceFile": "readable/index-inline-2.pretty.js",
+      "capture": "index.html",
+      "captureKind": "inline-script",
+      "captureByteStart": 51436,
+      "captureByteEnd": 1969967,
+      "captureSha256": "5cc0a464fe5959af6b76dd3a7e36317f2aecde7b0a3eec124db9b4c3b09722f8",
+      "captureBytes": 1918531,
+      "prettyLines": 74978,
+      "prettyBytes": 2395696,
+      "prettySha256": "e576670e4256bd9367bae71bf9a18cc51ae0bf9bd327641ea4133f68286204a8",
+      "prettyPasses": 2,
+      "fixpoint": true,
+      "tag": "index-inline-2",
+      "wrapper": "IIFE",
+      "statements": 1321,
+      "slices": 165,
+      "derived": "readable + 165 statement-aligned slice(s) + 1 wholeFile region(s) + 1 skipped section(s)"
+    }
+  ],
+  "sections": [
+    {
+      "file": "index-inline-1.css",
+      "wholeFile": true,
+      "title": "index-inline-1 — inline <style> block (whole-file, never sliced)",
+      "desc": "Lines 1-25 of readable/index-inline-1.pretty.css. Whole-file (stylesheet rule): the entry document's inline <style> #1 (372 B at bytes 137-509 of index.html) is indexed whole in readable/, never sliced.",
+      "note": "whole-file (stylesheet, not sliced): CSS is indexed whole in readable/",
+      "startLine": 1,
+      "endLine": 25,
+      "sourceFile": "readable/index-inline-1.pretty.css"
+    },
+    {
+      "file": "index-inline-2.css",
+      "wholeFile": true,
+      "title": "index-inline-2 — inline <style> block (whole-file, never sliced)",
+      "desc": "Lines 1-2110 of readable/index-inline-2.pretty.css. Whole-file (stylesheet rule): the entry document's inline <style> #2 (36391 B at bytes 1035-37426 of index.html) is indexed whole in readable/, never sliced.",
+      "note": "whole-file (stylesheet, not sliced): CSS is indexed whole in readable/",
+      "startLine": 1,
+      "endLine": 2110,
+      "sourceFile": "readable/index-inline-2.pretty.css"
+    },
+    {
+      "file": "index-inline-1-head.js",
+      "wholeFile": true,
+      "title": "index-inline-1-head — module bootstrap header comment (whole-file, never sliced)",
+      "desc": "Lines 1-1 of readable/index-inline-1.pretty.js: The module script's leading comment (`// three.js drives the first-person view; …`) — the external-import bootstrap's header; indexed whole-file in readable/, never sliced.",
+      "note": "whole-file region (wrapper rule): indexed in readable/, never sliced",
+      "startLine": 1,
+      "endLine": 1,
+      "sourceFile": "readable/index-inline-1.pretty.js"
+    },
+    {
+      "file": "index-inline-1-01.js",
+      "title": "index-inline-1 01 — three",
+      "desc": "Lines 2-4. Markers: three(3), dispatchevent(1).",
+      "startLine": 2,
+      "endLine": 4,
+      "sourceFile": "readable/index-inline-1.pretty.js"
+    },
+    {
+      "file": "index-inline-2-head.js",
+      "wholeFile": true,
+      "title": "index-inline-2-head — IIFE wrapper head ('use strict' + first module banner, whole-file, never sliced)",
+      "desc": "Lines 1-10 of readable/index-inline-2.pretty.js: The classic script's IIFE opening (`(() => {`, `\"use strict\";`) and the leading `// ---- world/rng.js ----` banner comment — the wrapper the whole game lives inside; indexed whole-file in readable/, never sliced (its body statements are the src/ slices).",
+      "note": "whole-file region (wrapper rule): indexed in readable/, never sliced",
+      "startLine": 1,
+      "endLine": 10,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-01.js",
+      "title": "index-inline-2 01 — math",
+      "desc": "Lines 11-353. Markers: math(26), rng(14).",
+      "startLine": 11,
+      "endLine": 353,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-02.js",
+      "title": "index-inline-2 02 — out",
+      "desc": "Lines 354-704. Markers: out(40), math(28).",
+      "startLine": 354,
+      "endLine": 704,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-03.js",
+      "title": "index-inline-2 03 — math",
+      "desc": "Lines 705-1042. Markers: math(38), out(15).",
+      "startLine": 705,
+      "endLine": 1042,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-04.js",
+      "title": "index-inline-2 04 — math",
+      "desc": "Lines 1043-1389. Markers: math(33), plates(23).",
+      "startLine": 1043,
+      "endLine": 1389,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-05.js",
+      "title": "index-inline-2 05 — key",
+      "desc": "Lines 1390-1466. Markers: key(17), math(9).",
+      "startLine": 1390,
+      "endLine": 1466,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-06.js",
+      "title": "index-inline-2 06 — idx",
+      "desc": "Oversized single declaration (kept whole). Lines 1467-2072. Markers: idx(89), grid(30).",
+      "startLine": 1467,
+      "endLine": 2072,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-07.js",
+      "title": "index-inline-2 07 — out",
+      "desc": "Lines 2073-2422. Markers: out(38), idx(33).",
+      "startLine": 2073,
+      "endLine": 2422,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-08.js",
+      "title": "index-inline-2 08 — math",
+      "desc": "Lines 2423-2708. Markers: math(28), planet(24).",
+      "startLine": 2423,
+      "endLine": 2708,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-09.js",
+      "title": "index-inline-2 09 — math",
+      "desc": "Lines 2709-3036. Markers: math(32), out(30).",
+      "startLine": 2709,
+      "endLine": 3036,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-10.js",
+      "title": "index-inline-2 10 — cells",
+      "desc": "Lines 3037-3337. Markers: cells(42), dir(26).",
+      "startLine": 3037,
+      "endLine": 3337,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-11.js",
+      "title": "index-inline-2 11 — shrub",
+      "desc": "Lines 3338-3536. Markers: shrub(13), cover(12).",
+      "startLine": 3338,
+      "endLine": 3536,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-12.js",
+      "title": "index-inline-2 12 — range",
+      "desc": "Lines 3537-3869. Markers: range(62), hab(37).",
+      "startLine": 3537,
+      "endLine": 3869,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-13.js",
+      "title": "index-inline-2 13 — math",
+      "desc": "Lines 3870-4220. Markers: math(44), dir(30).",
+      "startLine": 3870,
+      "endLine": 4220,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-14.js",
+      "title": "index-inline-2 14 — math",
+      "desc": "Lines 4221-4373. Markers: math(7), sitedot(5).",
+      "startLine": 4221,
+      "endLine": 4373,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-15.js",
+      "title": "index-inline-2 15 — env",
+      "desc": "Oversized single declaration (kept whole). Lines 4374-5679. Markers: env(130), math(97).",
+      "startLine": 4374,
+      "endLine": 5679,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-16.js",
+      "title": "index-inline-2 16 — cave_cell",
+      "desc": "Lines 5680-5681. Markers: cave_cell(1).",
+      "startLine": 5680,
+      "endLine": 5681,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-17.js",
+      "title": "index-inline-2 17 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 5682-6405. Markers: math(102), rnd(41).",
+      "startLine": 5682,
+      "endLine": 6405,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-18.js",
+      "title": "index-inline-2 18 — math",
+      "desc": "Lines 6406-6548. Markers: math(27), best(14).",
+      "startLine": 6406,
+      "endLine": 6548,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-19.js",
+      "title": "index-inline-2 19 — math",
+      "desc": "Lines 6549-6886. Markers: math(40), min(16).",
+      "startLine": 6549,
+      "endLine": 6886,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-20.js",
+      "title": "index-inline-2 20 — rng",
+      "desc": "Lines 6887-7229. Markers: rng(18), ends(13).",
+      "startLine": 6887,
+      "endLine": 7229,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-21.js",
+      "title": "index-inline-2 21 — key",
+      "desc": "Lines 7230-7569. Markers: key(17), hint(12).",
+      "startLine": 7230,
+      "endLine": 7569,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-22.js",
+      "title": "index-inline-2 22 — math",
+      "desc": "Lines 7570-7765. Markers: math(18), sin(6).",
+      "startLine": 7570,
+      "endLine": 7765,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-23.js",
+      "title": "index-inline-2 23 — planet",
+      "desc": "Oversized single declaration (kept whole). Lines 7766-8151. Markers: planet(32), dir(23).",
+      "startLine": 7766,
+      "endLine": 8151,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-24.js",
+      "title": "index-inline-2 24 — arc",
+      "desc": "Lines 8152-8222. Markers: arc(14), state(8).",
+      "startLine": 8152,
+      "endLine": 8222,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-25.js",
+      "title": "index-inline-2 25 — arc",
+      "desc": "Oversized single declaration (kept whole). Lines 8223-8636. Markers: arc(72), rng(40).",
+      "startLine": 8223,
+      "endLine": 8636,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-26.js",
+      "title": "index-inline-2 26 — dir",
+      "desc": "Lines 8637-8971. Markers: dir(26), town(25).",
+      "startLine": 8637,
+      "endLine": 8971,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-27.js",
+      "title": "index-inline-2 27 — owner",
+      "desc": "Lines 8972-9189. Markers: owner(16), pages(13).",
+      "startLine": 8972,
+      "endLine": 9189,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-28.js",
+      "title": "index-inline-2 28 — pages",
+      "desc": "Lines 9190-9523. Markers: pages(22), owner(21).",
+      "startLine": 9190,
+      "endLine": 9523,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-29.js",
+      "title": "index-inline-2 29 — story",
+      "desc": "Lines 9524-9845. Markers: story(18), dir(17).",
+      "startLine": 9524,
+      "endLine": 9845,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-30.js",
+      "title": "index-inline-2 30 — doing",
+      "desc": "Lines 9846-10161. Markers: doing(13), pick(10).",
+      "startLine": 9846,
+      "endLine": 10161,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-31.js",
+      "title": "index-inline-2 31 — arch",
+      "desc": "Lines 10162-10238. Markers: arch(11), pick(11).",
+      "startLine": 10162,
+      "endLine": 10238,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-32.js",
+      "title": "index-inline-2 32 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 10239-10886. Markers: math(77), buildings(39).",
+      "startLine": 10239,
+      "endLine": 10886,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-33.js",
+      "title": "index-inline-2 33 — hair",
+      "desc": "Lines 10887-11190. Markers: hair(9), hats(9).",
+      "startLine": 10887,
+      "endLine": 11190,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-34.js",
+      "title": "index-inline-2 34 — look",
+      "desc": "Lines 11191-11518. Markers: look(62), math(34).",
+      "startLine": 11191,
+      "endLine": 11518,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-35.js",
+      "title": "index-inline-2 35 — buildings",
+      "desc": "Oversized single declaration (kept whole). Lines 11519-12692. Markers: buildings(60), math(58).",
+      "startLine": 11519,
+      "endLine": 12692,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-36.js",
+      "title": "index-inline-2 36 — math",
+      "desc": "Lines 12693-12989. Markers: math(21), rng(20).",
+      "startLine": 12693,
+      "endLine": 12989,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-37.js",
+      "title": "index-inline-2 37 — secs",
+      "desc": "Lines 12990-13330. Markers: secs(21), word(19).",
+      "startLine": 12990,
+      "endLine": 13330,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-38.js",
+      "title": "index-inline-2 38 — len",
+      "desc": "Lines 13331-13673. Markers: len(14), size(13).",
+      "startLine": 13331,
+      "endLine": 13673,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-39.js",
+      "title": "index-inline-2 39 — pen",
+      "desc": "Lines 13674-14024. Markers: pen(27), math(25).",
+      "startLine": 13674,
+      "endLine": 14024,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-40.js",
+      "title": "index-inline-2 40 — story",
+      "desc": "Lines 14025-14330. Markers: story(15), chance(9).",
+      "startLine": 14025,
+      "endLine": 14330,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-41.js",
+      "title": "index-inline-2 41 — rng",
+      "desc": "Oversized single declaration (kept whole). Lines 14331-15789. Markers: rng(258), float(165).",
+      "startLine": 14331,
+      "endLine": 15789,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-42.js",
+      "title": "index-inline-2 42 — story",
+      "desc": "Lines 15790-16104. Markers: story(10), faith(6).",
+      "startLine": 15790,
+      "endLine": 16104,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-43.js",
+      "title": "index-inline-2 43 — push",
+      "desc": "Lines 16105-16295. Markers: push(15), who(13).",
+      "startLine": 16105,
+      "endLine": 16295,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-44.js",
+      "title": "index-inline-2 44 — pages",
+      "desc": "Oversized single declaration (kept whole). Lines 16296-16873. Markers: pages(50), who(46).",
+      "startLine": 16296,
+      "endLine": 16873,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-45.js",
+      "title": "index-inline-2 45 — who",
+      "desc": "Lines 16874-17155. Markers: who(23), pages(14).",
+      "startLine": 16874,
+      "endLine": 17155,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-46.js",
+      "title": "index-inline-2 46 — kind",
+      "desc": "Lines 17156-17488. Markers: kind(24), story(14).",
+      "startLine": 17156,
+      "endLine": 17488,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-47.js",
+      "title": "index-inline-2 47 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 17489-17972. Markers: math(94), push(25).",
+      "startLine": 17489,
+      "endLine": 17972,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-48.js",
+      "title": "index-inline-2 48 — biome_mat",
+      "desc": "Lines 17973-18204. Markers: biome_mat(17), bands(6).",
+      "startLine": 17973,
+      "endLine": 18204,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-49.js",
+      "title": "index-inline-2 49 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 18205-19251. Markers: math(81), packhex(35).",
+      "startLine": 18205,
+      "endLine": 19251,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-50.js",
+      "title": "index-inline-2 50 — math",
+      "desc": "Lines 19252-19572. Markers: math(20), form(16).",
+      "startLine": 19252,
+      "endLine": 19572,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-51.js",
+      "title": "index-inline-2 51 — math",
+      "desc": "Lines 19573-19882. Markers: math(51), max(22).",
+      "startLine": 19573,
+      "endLine": 19882,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-52.js",
+      "title": "index-inline-2 52 — math",
+      "desc": "Lines 19883-20222. Markers: math(61), rnd(41).",
+      "startLine": 19883,
+      "endLine": 20222,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-53.js",
+      "title": "index-inline-2 53 — rnd",
+      "desc": "Lines 20223-20527. Markers: rnd(41), math(35).",
+      "startLine": 20223,
+      "endLine": 20527,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-54.js",
+      "title": "index-inline-2 54 — math",
+      "desc": "Lines 20528-20874. Markers: math(27), push(13).",
+      "startLine": 20528,
+      "endLine": 20874,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-55.js",
+      "title": "index-inline-2 55 — row",
+      "desc": "Lines 20875-21181. Markers: row(20), pat(19).",
+      "startLine": 20875,
+      "endLine": 21181,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-56.js",
+      "title": "index-inline-2 56 — math",
+      "desc": "Lines 21182-21502. Markers: math(24), rnd(22).",
+      "startLine": 21182,
+      "endLine": 21502,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-57.js",
+      "title": "index-inline-2 57 — math",
+      "desc": "Lines 21503-21749. Markers: math(25), base(10).",
+      "startLine": 21503,
+      "endLine": 21749,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-58.js",
+      "title": "index-inline-2 58 — pat",
+      "desc": "Lines 21750-22086. Markers: pat(32), iron(20).",
+      "startLine": 21750,
+      "endLine": 22086,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-59.js",
+      "title": "index-inline-2 59 — pat",
+      "desc": "Lines 22087-22409. Markers: pat(27), quad(13).",
+      "startLine": 22087,
+      "endLine": 22409,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-60.js",
+      "title": "index-inline-2 60 — pat",
+      "desc": "Lines 22410-22757. Markers: pat(30), wood(20).",
+      "startLine": 22410,
+      "endLine": 22757,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-61.js",
+      "title": "index-inline-2 61 — pat",
+      "desc": "Lines 22758-23047. Markers: pat(27), math(19).",
+      "startLine": 22758,
+      "endLine": 23047,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-62.js",
+      "title": "index-inline-2 62 — math",
+      "desc": "Lines 23048-23205. Markers: math(20), capr(19).",
+      "startLine": 23048,
+      "endLine": 23205,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-63.js",
+      "title": "index-inline-2 63 — pat",
+      "desc": "Oversized single declaration (kept whole). Lines 23206-23896. Markers: pat(50), look(42).",
+      "startLine": 23206,
+      "endLine": 23896,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-64.js",
+      "title": "index-inline-2 64 — src",
+      "desc": "Lines 23897-24120. Markers: src(18), wrap(15).",
+      "startLine": 23897,
+      "endLine": 24120,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-65.js",
+      "title": "index-inline-2 65 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 24121-25177. Markers: math(71), pat(46).",
+      "startLine": 24121,
+      "endLine": 25177,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-66.js",
+      "title": "index-inline-2 66 — door",
+      "desc": "Oversized single declaration (kept whole). Lines 25178-26101. Markers: door(51), pat(48).",
+      "startLine": 25178,
+      "endLine": 26101,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-67.js",
+      "title": "index-inline-2 67 — math",
+      "desc": "Lines 26102-26395. Markers: math(39), cos(16).",
+      "startLine": 26102,
+      "endLine": 26395,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-68.js",
+      "title": "index-inline-2 68 — res",
+      "desc": "Lines 26396-26456. Markers: res(7), top(5).",
+      "startLine": 26396,
+      "endLine": 26456,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-69.js",
+      "title": "index-inline-2 69 — pat",
+      "desc": "Oversized single declaration (kept whole). Lines 26457-26964. Markers: pat(51), none(26).",
+      "startLine": 26457,
+      "endLine": 26964,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-70.js",
+      "title": "index-inline-2 70 — gbiome",
+      "desc": "Lines 26965-27299. Markers: gbiome(17), math(9).",
+      "startLine": 26965,
+      "endLine": 27299,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-71.js",
+      "title": "index-inline-2 71 — card_fs",
+      "desc": "Lines 27300-27622. Markers: card_fs(1), card_vs(1).",
+      "startLine": 27300,
+      "endLine": 27622,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-72.js",
+      "title": "index-inline-2 72 — math",
+      "desc": "Lines 27623-27895. Markers: math(19), out(10).",
+      "startLine": 27623,
+      "endLine": 27895,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-73.js",
+      "title": "index-inline-2 73 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 27896-31238. Markers: math(274), dir(113).",
+      "startLine": 27896,
+      "endLine": 31238,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-74.js",
+      "title": "index-inline-2 74 — body_slots",
+      "desc": "Lines 31239-31249. Markers: body_slots(1).",
+      "startLine": 31239,
+      "endLine": 31249,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-75.js",
+      "title": "index-inline-2 75 — desc",
+      "desc": "Oversized single declaration (kept whole). Lines 31250-32400. Markers: desc(125), kind(125).",
+      "startLine": 31250,
+      "endLine": 32400,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-76.js",
+      "title": "index-inline-2 76 — anvil",
+      "desc": "Lines 32401-32411. Markers: anvil(1), bench(1).",
+      "startLine": 32401,
+      "endLine": 32411,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-77.js",
+      "title": "index-inline-2 77 — out",
+      "desc": "Oversized single declaration (kept whole). Lines 32412-32784. Markers: out(57), key(39).",
+      "startLine": 32412,
+      "endLine": 32784,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-78.js",
+      "title": "index-inline-2 78 — items",
+      "desc": "Lines 32785-32910. Markers: items(9), charcoal(7).",
+      "startLine": 32785,
+      "endLine": 32910,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-79.js",
+      "title": "index-inline-2 79 — slots",
+      "desc": "Oversized single declaration (kept whole). Lines 32911-33355. Markers: slots(31), items(26).",
+      "startLine": 32911,
+      "endLine": 33355,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-80.js",
+      "title": "index-inline-2 80 — env",
+      "desc": "Lines 33356-33664. Markers: env(24), math(16).",
+      "startLine": 33356,
+      "endLine": 33664,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-81.js",
+      "title": "index-inline-2 81 — kind",
+      "desc": "Lines 33665-33979. Markers: kind(23), items(19).",
+      "startLine": 33665,
+      "endLine": 33979,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-82.js",
+      "title": "index-inline-2 82 — story",
+      "desc": "Lines 33980-34302. Markers: story(23), who(23).",
+      "startLine": 33980,
+      "endLine": 34302,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-83.js",
+      "title": "index-inline-2 83 — hex",
+      "desc": "Lines 34303-34620. Markers: hex(25), map(23).",
+      "startLine": 34303,
+      "endLine": 34620,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-84.js",
+      "title": "index-inline-2 84 — math",
+      "desc": "Lines 34621-34754. Markers: math(21), icon_n(16).",
+      "startLine": 34621,
+      "endLine": 34754,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-85.js",
+      "title": "index-inline-2 85 — line",
+      "desc": "Oversized single declaration (kept whole). Lines 34755-36693. Markers: line(266), poly(155).",
+      "startLine": 34755,
+      "endLine": 36693,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-86.js",
+      "title": "index-inline-2 86 — line",
+      "desc": "Lines 36694-36954. Markers: line(22), poly(13).",
+      "startLine": 36694,
+      "endLine": 36954,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-87.js",
+      "title": "index-inline-2 87 — item",
+      "desc": "Lines 36955-37068. Markers: item(9), regrow(9).",
+      "startLine": 36955,
+      "endLine": 37068,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-88.js",
+      "title": "index-inline-2 88 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 37069-38824. Markers: math(167), dir(135).",
+      "startLine": 37069,
+      "endLine": 38824,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-89.js",
+      "title": "index-inline-2 89 — brew",
+      "desc": "Lines 38825-39030. Markers: brew(3), lost_tint(3).",
+      "startLine": 38825,
+      "endLine": 39030,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-90.js",
+      "title": "index-inline-2 90 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 39031-43853. Markers: math(342), rows(251).",
+      "startLine": 39031,
+      "endLine": 43853,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-91.js",
+      "title": "index-inline-2 91 — bronze",
+      "desc": "Lines 43854-43889. Markers: bronze(1), coral(1).",
+      "startLine": 43854,
+      "endLine": 43889,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-92.js",
+      "title": "index-inline-2 92 — pat",
+      "desc": "Oversized single declaration (kept whole). Lines 43890-45742. Markers: pat(123), math(108).",
+      "startLine": 43890,
+      "endLine": 45742,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-93.js",
+      "title": "index-inline-2 93 — rows",
+      "desc": "Lines 45743-45988. Markers: rows(13), pat(12).",
+      "startLine": 45743,
+      "endLine": 45988,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-94.js",
+      "title": "index-inline-2 94 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 45989-47872. Markers: math(134), pat(69).",
+      "startLine": 45989,
+      "endLine": 47872,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-95.js",
+      "title": "index-inline-2 95 — pts",
+      "desc": "Lines 47873-47910. Markers: pts(16), math(6).",
+      "startLine": 47873,
+      "endLine": 47910,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-96.js",
+      "title": "index-inline-2 96 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 47911-50055. Markers: math(136), pat(103).",
+      "startLine": 47911,
+      "endLine": 50055,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-97.js",
+      "title": "index-inline-2 97 — bread",
+      "desc": "Lines 50056-50075. Markers: bread(1), char(1).",
+      "startLine": 50056,
+      "endLine": 50075,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-98.js",
+      "title": "index-inline-2 98 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 50076-50820. Markers: math(42), pat(30).",
+      "startLine": 50076,
+      "endLine": 50820,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-99.js",
+      "title": "index-inline-2 99 — room",
+      "desc": "Lines 50821-51132. Markers: room(40), math(32).",
+      "startLine": 50821,
+      "endLine": 51132,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-100.js",
+      "title": "index-inline-2 100 — tri",
+      "desc": "Lines 51133-51476. Markers: tri(14), belly(12).",
+      "startLine": 51133,
+      "endLine": 51476,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-101.js",
+      "title": "index-inline-2 101 — plan",
+      "desc": "Lines 51477-51634. Markers: plan(27), hare(11).",
+      "startLine": 51477,
+      "endLine": 51634,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-102.js",
+      "title": "index-inline-2 102 — rows",
+      "desc": "Oversized single declaration (kept whole). Lines 51635-52422. Markers: rows(61), plan(60).",
+      "startLine": 51635,
+      "endLine": 52422,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-103.js",
+      "title": "index-inline-2 103 — math",
+      "desc": "Lines 52423-52495. Markers: math(6), head(4).",
+      "startLine": 52423,
+      "endLine": 52495,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-104.js",
+      "title": "index-inline-2 104 — rnd",
+      "desc": "Oversized single declaration (kept whole). Lines 52496-53808. Markers: rnd(133), math(121).",
+      "startLine": 52496,
+      "endLine": 53808,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-105.js",
+      "title": "index-inline-2 105 — math",
+      "desc": "Lines 53809-53980. Markers: math(12), dir(11).",
+      "startLine": 53809,
+      "endLine": 53980,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-106.js",
+      "title": "index-inline-2 106 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 53981-54870. Markers: math(119), host(81).",
+      "startLine": 53981,
+      "endLine": 54870,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-107.js",
+      "title": "index-inline-2 107 — swap",
+      "desc": "Lines 54871-55047. Markers: swap(9), pat(3).",
+      "startLine": 54871,
+      "endLine": 55047,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-108.js",
+      "title": "index-inline-2 108 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 55048-56334. Markers: math(102), pat(35).",
+      "startLine": 55048,
+      "endLine": 56334,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-109.js",
+      "title": "index-inline-2 109 — math",
+      "desc": "Lines 56335-56693. Markers: math(34), min(13).",
+      "startLine": 56335,
+      "endLine": 56693,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-110.js",
+      "title": "index-inline-2 110 — math",
+      "desc": "Lines 56694-56772. Markers: math(7), max(5).",
+      "startLine": 56694,
+      "endLine": 56772,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-111.js",
+      "title": "index-inline-2 111 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 56773-57682. Markers: math(104), flow(26).",
+      "startLine": 56773,
+      "endLine": 57682,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-112.js",
+      "title": "index-inline-2 112 — math",
+      "desc": "Lines 57683-58029. Markers: math(31), end(25).",
+      "startLine": 57683,
+      "endLine": 58029,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-113.js",
+      "title": "index-inline-2 113 — len",
+      "desc": "Lines 58030-58053. Markers: len(2), belly(1).",
+      "startLine": 58030,
+      "endLine": 58053,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-114.js",
+      "title": "index-inline-2 114 — eyes",
+      "desc": "Oversized single declaration (kept whole). Lines 58054-58506. Markers: eyes(22), body(15).",
+      "startLine": 58054,
+      "endLine": 58506,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-115.js",
+      "title": "index-inline-2 115 — many",
+      "desc": "Lines 58507-58661. Markers: many(18), biome(16).",
+      "startLine": 58507,
+      "endLine": 58661,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-116.js",
+      "title": "index-inline-2 116 — bodyy",
+      "desc": "Lines 58662-58994. Markers: bodyy(27), bodyh(22).",
+      "startLine": 58662,
+      "endLine": 58994,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-117.js",
+      "title": "index-inline-2 117 — math",
+      "desc": "Oversized single declaration (kept whole). Lines 58995-60612. Markers: math(125), dir(69).",
+      "startLine": 58995,
+      "endLine": 60612,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-118.js",
+      "title": "index-inline-2 118 — tvdot",
+      "desc": "Lines 60613-60614. Markers: tvdot(1).",
+      "startLine": 60613,
+      "endLine": 60614,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-119.js",
+      "title": "index-inline-2 119 — pts",
+      "desc": "Oversized single declaration (kept whole). Lines 60615-61059. Markers: pts(25), dir(17).",
+      "startLine": 60615,
+      "endLine": 61059,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-120.js",
+      "title": "index-inline-2 120 — plan",
+      "desc": "Lines 61060-61101. Markers: plan(7), beast(5).",
+      "startLine": 61060,
+      "endLine": 61101,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-121.js",
+      "title": "index-inline-2 121 — dir",
+      "desc": "Oversized single declaration (kept whole). Lines 61102-61550. Markers: dir(60), math(57).",
+      "startLine": 61102,
+      "endLine": 61550,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-122.js",
+      "title": "index-inline-2 122 — math",
+      "desc": "Lines 61551-61776. Markers: math(37), put(12).",
+      "startLine": 61551,
+      "endLine": 61776,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-123.js",
+      "title": "index-inline-2 123 — bsz",
+      "desc": "Lines 61777-61987. Markers: bsz(13), put(13).",
+      "startLine": 61777,
+      "endLine": 61987,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-124.js",
+      "title": "index-inline-2 124 — pack",
+      "desc": "Oversized single declaration (kept whole). Lines 61988-62431. Markers: pack(34), ctx(19).",
+      "startLine": 61988,
+      "endLine": 62431,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-125.js",
+      "title": "index-inline-2 125 — slots",
+      "desc": "Lines 62432-62740. Markers: slots(10), textcontent(10).",
+      "startLine": 62432,
+      "endLine": 62740,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-126.js",
+      "title": "index-inline-2 126 — gain",
+      "desc": "Lines 62741-63024. Markers: gain(30), ctx(20).",
+      "startLine": 62741,
+      "endLine": 63024,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-127.js",
+      "title": "index-inline-2 127 — note",
+      "desc": "Lines 63025-63259. Markers: note(57), gain(46).",
+      "startLine": 63025,
+      "endLine": 63259,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-128.js",
+      "title": "index-inline-2 128 — math",
+      "desc": "Lines 63260-63586. Markers: math(52), put(12).",
+      "startLine": 63260,
+      "endLine": 63586,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-129.js",
+      "title": "index-inline-2 129 — state",
+      "desc": "Lines 63587-63929. Markers: state(16), canvas(15).",
+      "startLine": 63587,
+      "endLine": 63929,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-130.js",
+      "title": "index-inline-2 130 — state",
+      "desc": "Lines 63930-64252. Markers: state(30), dir(23).",
+      "startLine": 63930,
+      "endLine": 64252,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-131.js",
+      "title": "index-inline-2 131 — dlg",
+      "desc": "Lines 64253-64585. Markers: dlg(31), hidden(29).",
+      "startLine": 64253,
+      "endLine": 64585,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-132.js",
+      "title": "index-inline-2 132 — state",
+      "desc": "Lines 64586-64801. Markers: state(13), math(11).",
+      "startLine": 64586,
+      "endLine": 64801,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-133.js",
+      "title": "index-inline-2 133 — ground",
+      "desc": "Lines 64802-65091. Markers: ground(20), pages(15).",
+      "startLine": 64802,
+      "endLine": 65091,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-134.js",
+      "title": "index-inline-2 134 — the",
+      "desc": "Oversized single declaration (kept whole). Lines 65092-65520. Markers: the(11), info(10).",
+      "startLine": 65092,
+      "endLine": 65520,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-135.js",
+      "title": "index-inline-2 135 — math",
+      "desc": "Lines 65521-65843. Markers: math(15), town(13).",
+      "startLine": 65521,
+      "endLine": 65843,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-136.js",
+      "title": "index-inline-2 136 — dir",
+      "desc": "Lines 65844-66165. Markers: dir(25), ground(16).",
+      "startLine": 65844,
+      "endLine": 66165,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-137.js",
+      "title": "index-inline-2 137 — who",
+      "desc": "Lines 66166-66498. Markers: who(17), place(10).",
+      "startLine": 66166,
+      "endLine": 66498,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-138.js",
+      "title": "index-inline-2 138 — who",
+      "desc": "Lines 66499-66810. Markers: who(21), int(17).",
+      "startLine": 66499,
+      "endLine": 66810,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-139.js",
+      "title": "index-inline-2 139 — ore",
+      "desc": "Lines 66811-67153. Markers: ore(16), pack(16).",
+      "startLine": 66811,
+      "endLine": 67153,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-140.js",
+      "title": "index-inline-2 140 — host",
+      "desc": "Lines 67154-67488. Markers: host(13), role(11).",
+      "startLine": 67154,
+      "endLine": 67488,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-141.js",
+      "title": "index-inline-2 141 — label",
+      "desc": "Lines 67489-67809. Markers: label(20), town(17).",
+      "startLine": 67489,
+      "endLine": 67809,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-142.js",
+      "title": "index-inline-2 142 — size",
+      "desc": "Lines 67810-68159. Markers: size(36), who(22).",
+      "startLine": 67810,
+      "endLine": 68159,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-143.js",
+      "title": "index-inline-2 143 — rec",
+      "desc": "Lines 68160-68510. Markers: rec(67), ground(16).",
+      "startLine": 68160,
+      "endLine": 68510,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-144.js",
+      "title": "index-inline-2 144 — rec",
+      "desc": "Lines 68511-68769. Markers: rec(50), best(18).",
+      "startLine": 68511,
+      "endLine": 68769,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-145.js",
+      "title": "index-inline-2 145 — rec",
+      "desc": "Lines 68770-69118. Markers: rec(37), pen(25).",
+      "startLine": 68770,
+      "endLine": 69118,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-146.js",
+      "title": "index-inline-2 146 — rec",
+      "desc": "Lines 69119-69430. Markers: rec(57), ground(23).",
+      "startLine": 69119,
+      "endLine": 69430,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-147.js",
+      "title": "index-inline-2 147 — rec",
+      "desc": "Lines 69431-69775. Markers: rec(26), out(21).",
+      "startLine": 69431,
+      "endLine": 69775,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-148.js",
+      "title": "index-inline-2 148 — down",
+      "desc": "Lines 69776-70104. Markers: down(15), ground(15).",
+      "startLine": 69776,
+      "endLine": 70104,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-149.js",
+      "title": "index-inline-2 149 — ground",
+      "desc": "Lines 70105-70448. Markers: ground(36), hidden(18).",
+      "startLine": 70105,
+      "endLine": 70448,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-150.js",
+      "title": "index-inline-2 150 — notes",
+      "desc": "Lines 70449-70756. Markers: notes(12), ground(10).",
+      "startLine": 70449,
+      "endLine": 70756,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-151.js",
+      "title": "index-inline-2 151 — ground",
+      "desc": "Lines 70757-71090. Markers: ground(20), who(19).",
+      "startLine": 70757,
+      "endLine": 71090,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-152.js",
+      "title": "index-inline-2 152 — ground",
+      "desc": "Lines 71091-71441. Markers: ground(35), state(14).",
+      "startLine": 71091,
+      "endLine": 71441,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-153.js",
+      "title": "index-inline-2 153 — arg",
+      "desc": "Lines 71442-71766. Markers: arg(23), say(18).",
+      "startLine": 71442,
+      "endLine": 71766,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-154.js",
+      "title": "index-inline-2 154 — kind",
+      "desc": "Lines 71767-72082. Markers: kind(33), ground(15).",
+      "startLine": 71767,
+      "endLine": 72082,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-155.js",
+      "title": "index-inline-2 155 — res",
+      "desc": "Lines 72083-72407. Markers: res(20), eff(17).",
+      "startLine": 72083,
+      "endLine": 72407,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-156.js",
+      "title": "index-inline-2 156 — math",
+      "desc": "Lines 72408-72540. Markers: math(8), who(8).",
+      "startLine": 72408,
+      "endLine": 72540,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-157.js",
+      "title": "index-inline-2 157 — close",
+      "desc": "Lines 72541-72782. Markers: close(12), who(12).",
+      "startLine": 72541,
+      "endLine": 72782,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-158.js",
+      "title": "index-inline-2 158 — label",
+      "desc": "Lines 72783-73075. Markers: label(15), who(14).",
+      "startLine": 72783,
+      "endLine": 73075,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-159.js",
+      "title": "index-inline-2 159 — ground",
+      "desc": "Lines 73076-73267. Markers: ground(13), math(13).",
+      "startLine": 73076,
+      "endLine": 73267,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-160.js",
+      "title": "index-inline-2 160 — eff",
+      "desc": "Lines 73268-73616. Markers: eff(28), kind(24).",
+      "startLine": 73268,
+      "endLine": 73616,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-161.js",
+      "title": "index-inline-2 161 — kind",
+      "desc": "Lines 73617-73904. Markers: kind(20), arc(16).",
+      "startLine": 73617,
+      "endLine": 73904,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-162.js",
+      "title": "index-inline-2 162 — ground",
+      "desc": "Lines 73905-74224. Markers: ground(23), kind(16).",
+      "startLine": 73905,
+      "endLine": 74224,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-163.js",
+      "title": "index-inline-2 163 — ground",
+      "desc": "Lines 74225-74562. Markers: ground(20), bed(19).",
+      "startLine": 74225,
+      "endLine": 74562,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-164.js",
+      "title": "index-inline-2 164 — math",
+      "desc": "Lines 74563-74845. Markers: math(30), state(29).",
+      "startLine": 74563,
+      "endLine": 74845,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-165.js",
+      "title": "index-inline-2 165 — state",
+      "desc": "Lines 74846-74977. Markers: state(10), story(10).",
+      "startLine": 74846,
+      "endLine": 74977,
+      "sourceFile": "readable/index-inline-2.pretty.js"
+    },
+    {
+      "file": "index-inline-2-tail.js",
+      "skipped": true,
+      "title": "index-inline-2-tail — IIFE closer (not sliced)",
+      "desc": "Lines 74978-74978. The IIFE's closing `})();` — a standalone tail carries no statements of its own, so it is indexed only.",
+      "startLine": 74978,
+      "endLine": 74978,
+      "sourceFile": "readable/index-inline-2.pretty.js",
+      "firstLine": "})();",
+      "lastLine": "})();"
+    }
+  ],
+  "notRendered": [
+    {
+      "capture": "index.html",
+      "kind": "external-import",
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.module.min.js",
+      "rendered": false,
+      "reason": "external ES-module import in the inline module script (three.js 0.186.1, pinned by the URL) — a CDN dependency that stays CDN (fleet rule; socker precedent 2026-10-10); no vendor bytes are captured or derived. The game degrades gracefully without it: the globe and everything else work without three.js."
+    },
+    {
+      "capture": "index.html",
+      "kind": "external-script",
+      "url": "https://static.itch.io/htmlgame.js",
+      "rendered": false,
+      "reason": "itch HTML5 harness on the frame document (resize/fullscreen) — platform chrome, not the game; left pointing at itch, never vendored."
+    },
+    {
+      "capture": "index.html",
+      "kind": "external-link(preconnect)",
+      "url": "https://fonts.googleapis.com",
+      "rendered": false,
+      "reason": "external preconnect hint — a connection warm-up, not content; not captured"
+    },
+    {
+      "capture": "index.html",
+      "kind": "external-link(preconnect)",
+      "url": "https://fonts.gstatic.com",
+      "rendered": false,
+      "reason": "external preconnect hint — a connection warm-up, not content; not captured"
+    },
+    {
+      "capture": "index.html",
+      "kind": "external-stylesheet",
+      "url": "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=Silkscreen:wght@400;700&display=swap",
+      "rendered": false,
+      "reason": "external CDN stylesheet (Google Fonts) — a CDN dependency that stays CDN (fleet rule; socker precedent 2026-10-10); the game falls back to system fonts without it, so it is not backfilled into the capture"
+    }
+  ]
+}
