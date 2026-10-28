@@ -147,6 +147,25 @@ node tools/check-exports.mjs   # the derived layer still exports every public na
 node tools/derive.mjs --check          # the derived layer is current? (compares a fresh rebuild; writes NOTHING)
 ```
 
+## Boot test (2026-10-27)
+
+- Entry: `http://127.0.0.1:5026/index.html` served by `tools/serve.mjs` with the
+  network blocked (`MAP * 127.0.0.1`).
+- Outcome: **rendered** — the planet view (Siatheind IX globe, PLANET panel, DAY
+  counter, EMBARK) appeared; EMBARK → NORMAL entered the arrival narration, so
+  the boot confirms the mirror's playable-build claim.
+- Evidence: body 896 chars; canvas 422x219 (plus 300x150, 120x120, 96x72, 44x48);
+  0 console errors; 1 failed same-origin request, 3 blocked cross-origin;
+  screenshot `docs/boot-2026-10-27.png`.
+- Gaps seen: only the browser's `/favicon.ico` 404 (the itch host answers 404
+  too); no game-asset 404s.
+
+Offline, the three CDN/itch requests (cdnjs three.js, Google Fonts CSS,
+`static.itch.io/htmlgame.js`) are blocked by the rule, so three.js never loads
+and the first-person ground view falls back to the build's own text narration
+("This browser cannot show the ground in 3D … the story is told in words");
+the 2D-canvas globe and every menu work normally.
+
 ## Updating from upstream
 
 ```
